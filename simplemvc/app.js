@@ -1,0 +1,1 @@
+require('./server').run(3000);

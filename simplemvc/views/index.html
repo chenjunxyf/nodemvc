@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+</head>
+<body>
+  <div>
+      用户名：<input id="txtName" type="text" />
+      密码：<input id="txtPwd" type="password" />
+  </div>
+  <input id="btn" type="button" value="登录" />
+
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript">
+      $(function () {
+          $('#btn').click(function () {
+            $.ajax({
+              url: '/login',
+              type: 'post',
+              data: { name: $('#txtName').val(), pwd: $('#txtPwd').val() },
+              success: function(data) {
+                var res = $.parseJSON(data);
+                location.href = res.success == false ? '/' : '/main/load';
+              }
+            });
+          });
+      });
+  </script>
+</body>
+</html>
